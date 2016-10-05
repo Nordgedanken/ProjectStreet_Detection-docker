@@ -3,7 +3,7 @@
 mkdir data
 mkdir info
 
-python face_detect.py
+PYTHONPATH='/usr/lib/python2.7/dist-packages/' python face_detect.py
 opencv_createsamples -img sample_street.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 1442
 opencv_createsamples -info info/info.lst -num 1400 -w 50 -h 50 -vec positives.vec
 #cache optimisation
