@@ -1,14 +1,14 @@
 ##########################################################################################################
 # Code is based on: https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/  #
 ##########################################################################################################
-import urllib2
+import urllib
 import cv2
 import numpy as np
 import os
 
 def store_raw_images():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
-    neg_image_urls = urllib2.urlopen(neg_images_link).read().decode()
+    neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
     pic_num = 1
     
     if not os.path.exists('neg'):
@@ -17,7 +17,7 @@ def store_raw_images():
     for i in neg_image_urls.split('\n'):
         try:
             i
-            urllib2.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+            urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             # should be larger than samples / pos pic (so we can place our image on it)
             resized_image = cv2.resize(img, (100, 100))
