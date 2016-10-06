@@ -56,3 +56,7 @@ def create_pos_n_neg():
                 line = file_type+'/'+img+'\n'
                 with open('bg.txt','a') as f:
                     f.write(line)
+                    
+store_raw_images()
+find_uglies()
+create_pos_n_neg()
