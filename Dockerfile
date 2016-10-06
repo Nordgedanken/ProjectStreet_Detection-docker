@@ -6,3 +6,4 @@ RUN apt-get install -y cron
 
 COPY scripts/ PStreet
 WORKDIR PStreet
+CMD cron
