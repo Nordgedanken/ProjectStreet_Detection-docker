@@ -16,4 +16,4 @@ echo "* * * * * echo 3 > /proc/sys/vm/drop_caches" >> cron
 crontab cron
 rm cron
 opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1300 -numNeg 650 -numStages 20 -w 50 -h 50
-cp data/cascade.xml /root/shared/results/street-cascade-$(date +%s).xml
+cp "data/cascade.xml" "/root/shared/results/street-cascade-$(date +%s).xml"
