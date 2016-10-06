@@ -6,8 +6,11 @@ mkdir info
 
 export PYTHONPATH="/usr/lib/python2.7/dist-packages/" 
 python download-image-by-link.py
-opencv_createsamples -img sample_street.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 1442
+ls -la
+opencv_createsamples -img ./sample_street.jpg -bg bg.txt -info info/info.lst -pngoutput info -maxxangle 0.5 -maxyangle 0.5 -maxzangle 0.5 -num 1442
+ls -la info
 opencv_createsamples -info info/info.lst -num 1400 -w 50 -h 50 -vec positives.vec
+ls -la neg
 #cache optimisation
 crontab -l > cron
 #echo new cron into cron file
