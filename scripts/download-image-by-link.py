@@ -1,7 +1,7 @@
 ##########################################################################################################
 # Code is based on: https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/  #
 ##########################################################################################################
-import urllib.request
+import urllib2.request
 import cv2
 import numpy as np
 import os
