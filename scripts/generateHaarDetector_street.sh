@@ -2,6 +2,7 @@
 
 mkdir data
 mkdir info
+mkdir neg
 
 
 export PYTHONPATH="/usr/lib/python2.7/dist-packages/" 
