@@ -12,6 +12,7 @@ opencv_createsamples -img ./sample_street.jpg -bg bg.txt -info info/info.lst -pn
 ls -la info
 opencv_createsamples -info info/info.lst -num 1400 -w 50 -h 50 -vec positives.vec
 ls -la neg
+ls -la
 #cache optimisation
 crontab -l > cron
 #echo new cron into cron file
