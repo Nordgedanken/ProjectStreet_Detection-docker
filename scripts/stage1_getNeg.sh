@@ -20,3 +20,10 @@ echo "generate vec files"
 opencv_createsamples -info ./info/info.lst -num $NUM_FILES -w 50 -h 50 -vec positives.vec
 ls -la neg
 ls -la
+
+tar -cf neg.tar neg/ 
+tar -cf data.tar data/ 
+cp "./neg.tar" "/root/shared/results/neg.tar"
+cp "./data.tar" "/root/shared/results/data.tar"
+cp "./bg.txt" "/root/shared/results/bg.txt"
+cp "./positives.vec" "/root/shared/results/positives.vec"
