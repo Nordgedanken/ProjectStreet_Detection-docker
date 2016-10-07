@@ -23,7 +23,7 @@ ls -la
 
 tar -cf neg.tar neg/ 
 tar -cf data.tar data/ 
-cp "./neg.tar" "/root/shared/results/neg.tar"
-cp "./data.tar" "/root/shared/results/data.tar"
-cp "./bg.txt" "/root/shared/results/bg.txt"
-cp "./positives.vec" "/root/shared/results/positives.vec"
+cp "./neg.tar" "/root/shared/results/neg.tar" && echo "neg.tar in upload"
+cp "./data.tar" "/root/shared/results/data.tar" && echo "data.tar in upload"
+cp "./bg.txt" "/root/shared/results/bg.txt" && echo "bg.txt in upload"
+cp "./positives.vec" "/root/shared/results/positives.vec" && echo "positives.vec in upload"
