@@ -19,9 +19,12 @@ def store_raw_images():
             i
             urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
-            # should be larger than samples / pos pic (so we can place our image on it)
-            resized_image = cv2.resize(img, (100, 100))
-            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+            if img is not None:
+                # should be larger than samples / pos pic (so we can place our image on it)
+                resized_image = cv2.resize(img, (100, 100))
+                cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+            else:
+                print "invalid img"
             pic_num += 1
             
         except Exception as e:
