@@ -21,9 +21,11 @@ opencv_createsamples -info ./info/info.lst -num $NUM_FILES -w 50 -h 50 -vec posi
 ls -la neg
 ls -la
 
-tar -cf neg.tar neg/ 
-tar -cf data.tar data/ 
-cp "./neg.tar" "/root/shared/results/neg.tar" && echo "neg.tar in upload"
-cp "./data.tar" "/root/shared/results/data.tar" && echo "data.tar in upload"
+zstd --train neg/* -o neg
+zstd neg.zst -D neg
+zstd --train data/* -o data
+zstd data.zst -D data
+cp "./neg.zst" "/root/shared/results/neg.zst" && echo "neg.zst in upload"
+cp "./data.zst" "/root/shared/results/data.zst" && echo "data.zst in upload"
 cp "./bg.txt" "/root/shared/results/bg.txt" && echo "bg.txt in upload"
 cp "./positives.vec" "/root/shared/results/positives.vec" && echo "positives.vec in upload"
