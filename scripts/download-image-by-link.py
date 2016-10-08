@@ -10,6 +10,7 @@ def store_raw_images():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'   
     neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
     pic_num = 1
+    fail_images = 0
     
     if not os.path.exists('neg'):
         os.makedirs('neg')
@@ -24,11 +25,12 @@ def store_raw_images():
                 resized_image = cv2.resize(img, (100, 100))
                 cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
             else:
-                print "invalid img"
+                fail_images += 1
             pic_num += 1
             
         except Exception as e:
             print str(e)
+    print fail_images + " invalid imgages"
             
 def store_raw_images2():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
