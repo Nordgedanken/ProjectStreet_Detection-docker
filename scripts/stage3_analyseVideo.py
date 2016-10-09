@@ -20,7 +20,7 @@ args = parser.parse_args()
 
 cap = cv2.VideoCapture(args.video)
 while not cap.isOpened():
-    cap = cv2.VideoCapture(options.video)
+    cap = cv2.VideoCapture(args.video)
     cv2.waitKey(1000)
     print "Wait for the header"
 
