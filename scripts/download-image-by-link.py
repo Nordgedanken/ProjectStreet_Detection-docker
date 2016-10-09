@@ -36,6 +36,7 @@ def store_raw_images2():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
     neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
     pic_num = len([name for name in os.listdir('neg') if os.path.isfile(name)])+1
+    fail_images = 0
     
     if not os.path.exists('neg'):
         os.makedirs('neg')
@@ -45,16 +46,46 @@ def store_raw_images2():
             i
             urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
-            # should be larger than samples / pos pic (so we can place our image on it)
-            resized_image = cv2.resize(img, (100, 100))
-            cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+            if img is not None:
+                # should be larger than samples / pos pic (so we can place our image on it)
+                resized_image = cv2.resize(img, (100, 100))
+                cv2.imwrite("neg/"+str(pic_num)+".jpg",resized_image)
+            else:
+                fail_images += 1
             pic_num += 1
             
         except Exception as e:
             print str(e)
+    print fail_images + " invalid imgages"
+    
+def store_raw_pos_images():
+    pos_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
+    pos_image_urls = urllib.urlopen(pos_images_link).read().decode()
+    pic_num = len([name for name in os.listdir('pos') if os.path.isfile(name)])+1
+    fail_images = 0
+    
+    if not os.path.exists('pos'):
+        os.makedirs('pos')
+        
+    for i in pos_image_urls.split('\n'):
+        try:
+            i
+            urllib.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
+            img = cv2.imread("pos/"+str(pic_num)+".jpg")
+            if img is not None:
+                # should be larger than samples / pos pic (so we can place our image on it)
+                resized_image = cv2.resize(img, (50, 50))
+                cv2.imwrite("pos/"+str(pic_num)+".jpg",resized_image)
+            else:
+                fail_images += 1
+            pic_num += 1
             
-def create_pos_n_neg():
-    for file_type in ['neg']:
+        except Exception as e:
+            print str(e)
+    print fail_images + " invalid imgages"
+
+def create_pos_n():
+    for file_type in ['neg','pos']:
         
         for img in os.listdir(file_type):
 
@@ -69,4 +100,5 @@ def create_pos_n_neg():
                     
 store_raw_images()
 store_raw_images2()
-create_pos_n_neg()
+store_raw_pos_images()
+create_pos_n()
