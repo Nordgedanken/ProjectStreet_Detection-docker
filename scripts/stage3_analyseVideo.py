@@ -9,17 +9,16 @@
 ##### Video to single frames comes from: http://stackoverflow.com/a/19082750/4929236 #####
 
 import cv2
-import optparse
+import argparse
 
-parser = optparse.OptionParser()
+parser = argparse.ArgumentParser()
 
-parser.add_option('-v', '--video',
-    action="store", dest="video",
-    help="Video to analyse", default="./in.mp4")
+parser.add_argument('video', type=string,
+                    help='Video to analyse')
 
-options, args = parser.parse_args()
+args = parser.parse_args()
 
-cap = cv2.VideoCapture(options.video)
+cap = cv2.VideoCapture(args.video)
 while not cap.isOpened():
     cap = cv2.VideoCapture(options.video)
     cv2.waitKey(1000)
