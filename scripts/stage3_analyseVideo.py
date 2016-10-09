@@ -9,10 +9,19 @@
 ##### Video to single frames comes from: http://stackoverflow.com/a/19082750/4929236 #####
 
 import cv2
+import optparse
 
-cap = cv2.VideoCapture("./out.mp4")
+parser = optparse.OptionParser()
+
+parser.add_option('-v', '--video',
+    action="store", dest="video",
+    help="Video to analyse", default="./in.mp4")
+
+options, args = parser.parse_args()
+
+cap = cv2.VideoCapture(options.video)
 while not cap.isOpened():
-    cap = cv2.VideoCapture("./out.mp4")
+    cap = cv2.VideoCapture(options.video)
     cv2.waitKey(1000)
     print "Wait for the header"
 
