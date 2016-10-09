@@ -59,7 +59,7 @@ def store_raw_images2():
     print fail_images + " invalid imgages"
     
 def store_raw_pos_images():
-    pos_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
+    pos_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n04096066'   
     pos_image_urls = urllib.urlopen(pos_images_link).read().decode()
     pic_num = len([name for name in os.listdir('pos') if os.path.isfile(name)])+1
     fail_images = 0
