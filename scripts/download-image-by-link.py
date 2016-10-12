@@ -11,6 +11,7 @@ def store_raw_images():
     neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
     pic_num = 1
     fail_images = 0
+    fail_url = 0
     
     if not os.path.exists('neg'):
         os.makedirs('neg')
@@ -18,7 +19,10 @@ def store_raw_images():
     for i in neg_image_urls.split('\n'):
         try:
             i
-            urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+            try:
+                urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+            except urllib.error.HTTPError as err:
+                fail_url += 1
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             if img is not None:
                 # should be larger than samples / pos pic (so we can place our image on it)
@@ -31,12 +35,14 @@ def store_raw_images():
         except Exception as e:
             print str(e)
     print fail_images + " invalid imgages"
+    print fail_url + " invalid urls"
             
 def store_raw_images2():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
     neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
     pic_num = len([name for name in os.listdir('neg') if os.path.isfile(name)])+1
     fail_images = 0
+    fail_url = 0
     
     if not os.path.exists('neg'):
         os.makedirs('neg')
@@ -44,7 +50,10 @@ def store_raw_images2():
     for i in neg_image_urls.split('\n'):
         try:
             i
-            urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+            try:
+                urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+            except urllib.error.HTTPError as err:
+                fail_url += 1
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             if img is not None:
                 # should be larger than samples / pos pic (so we can place our image on it)
@@ -57,12 +66,14 @@ def store_raw_images2():
         except Exception as e:
             print str(e)
     print fail_images + " invalid imgages"
+    print fail_url + " invalid urls"
     
 def store_raw_pos_images():
     pos_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n04096066'   
     pos_image_urls = urllib.urlopen(pos_images_link).read().decode()
     pic_num = len([name for name in os.listdir('pos') if os.path.isfile(name)])+1
     fail_images = 0
+    fail_url = 0
     
     if not os.path.exists('pos'):
         os.makedirs('pos')
@@ -70,7 +81,10 @@ def store_raw_pos_images():
     for i in pos_image_urls.split('\n'):
         try:
             i
-            urllib.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
+            try:
+                urllib.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
+            except urllib.error.HTTPError as err:
+                fail_url += 1
             img = cv2.imread("pos/"+str(pic_num)+".jpg")
             if img is not None:
                 # should be larger than samples / pos pic (so we can place our image on it)
@@ -83,6 +97,7 @@ def store_raw_pos_images():
         except Exception as e:
             print str(e)
     print fail_images + " invalid imgages"
+    print fail_url + " invalid urls"
 
 def create_pos_n():
     for file_type in ['neg','pos']:
