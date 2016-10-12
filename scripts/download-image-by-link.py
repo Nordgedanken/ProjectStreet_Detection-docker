@@ -5,6 +5,7 @@ import urllib
 import cv2
 import numpy as np
 import os
+from socket import timeout
 
 def store_raw_images():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'   
@@ -21,8 +22,10 @@ def store_raw_images():
             i
             try:
                 urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
-            except urllib.error.HTTPError as err:
-                fail_url += 1
+            except (HTTPError, URLError) as error:
+                fail_url = 0
+            except timeout:
+                fail_url = 0
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             if img is not None:
                 # should be larger than samples / pos pic (so we can place our image on it)
@@ -52,8 +55,10 @@ def store_raw_images2():
             i
             try:
                 urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
-            except urllib.error.HTTPError as err:
-                fail_url += 1
+            except (HTTPError, URLError) as error:
+                fail_url = 0
+            except timeout:
+                fail_url = 0
             img = cv2.imread("neg/"+str(pic_num)+".jpg",cv2.IMREAD_GRAYSCALE)
             if img is not None:
                 # should be larger than samples / pos pic (so we can place our image on it)
@@ -83,8 +88,10 @@ def store_raw_pos_images():
             i
             try:
                 urllib.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
-            except urllib.error.HTTPError as err:
-                fail_url += 1
+            except (HTTPError, URLError) as error:
+                fail_url = 0
+            except timeout:
+                fail_url = 0
             img = cv2.imread("pos/"+str(pic_num)+".jpg")
             if img is not None:
                 # should be larger than samples / pos pic (so we can place our image on it)
