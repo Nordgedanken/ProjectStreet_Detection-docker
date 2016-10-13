@@ -1,8 +1,8 @@
 ##########################################################################################################
 # Code is based on: https://pythonprogramming.net/haar-cascade-object-detection-python-opencv-tutorial/  #
 ##########################################################################################################
-import urllib
-from urllib import HTTPError
+import urllib2
+from urllib2 import HTTPError
 import cv2
 import numpy as np
 import os
@@ -10,7 +10,7 @@ from socket import timeout
 
 def store_raw_images():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'   
-    neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
+    neg_image_urls = urllib2.urlopen(neg_images_link).read().decode()
     pic_num = 1
     fail_images = 0
     fail_url = 0
@@ -22,7 +22,7 @@ def store_raw_images():
         try:
             i
             try:
-                urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+                urllib2.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             except (HTTPError, URLError) as error:
                 fail_url = 0
             except timeout:
@@ -43,7 +43,7 @@ def store_raw_images():
             
 def store_raw_images2():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n07942152'   
-    neg_image_urls = urllib.urlopen(neg_images_link).read().decode()
+    neg_image_urls = urllib2.urlopen(neg_images_link).read().decode()
     pic_num = len([name for name in os.listdir('neg') if os.path.isfile(name)])+1
     fail_images = 0
     fail_url = 0
@@ -55,7 +55,7 @@ def store_raw_images2():
         try:
             i
             try:
-                urllib.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+                urllib2.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             except (HTTPError, URLError) as error:
                 fail_url = 0
             except timeout:
@@ -76,7 +76,7 @@ def store_raw_images2():
     
 def store_raw_pos_images():
     pos_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n04096066'   
-    pos_image_urls = urllib.urlopen(pos_images_link).read().decode()
+    pos_image_urls = urllib2.urlopen(pos_images_link).read().decode()
     pic_num = len([name for name in os.listdir('pos') if os.path.isfile(name)])+1
     fail_images = 0
     fail_url = 0
@@ -88,7 +88,7 @@ def store_raw_pos_images():
         try:
             i
             try:
-                urllib.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
+                urllib2.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
             except (HTTPError, URLError) as error:
                 fail_url = 0
             except timeout:
