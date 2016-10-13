@@ -22,7 +22,7 @@ def store_raw_images():
         try:
             i
             try:
-                urllib2.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+                urllib2.request.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             except (HTTPError, URLError) as error:
                 fail_url = 0
             except timeout:
@@ -55,7 +55,7 @@ def store_raw_images2():
         try:
             i
             try:
-                urllib2.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
+                urllib2.request.urlretrieve(i, "neg/"+str(pic_num)+".jpg")
             except (HTTPError, URLError) as error:
                 fail_url = 0
             except timeout:
@@ -88,7 +88,7 @@ def store_raw_pos_images():
         try:
             i
             try:
-                urllib2.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
+                urllib2.request.urlretrieve(i, "pos/"+str(pic_num)+".jpg")
             except (HTTPError, URLError) as error:
                 fail_url = 0
             except timeout:
