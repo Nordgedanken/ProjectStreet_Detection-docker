@@ -7,6 +7,10 @@ import cv2
 import numpy as np
 import os
 from socket import timeout
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--stage', help='Stage to run')
 
 def store_raw_images():
     neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n00523513'   
@@ -130,7 +134,11 @@ def create_pos_n():
                 with open('bg.txt','a') as f:
                     f.write(line)
                     
-store_raw_images()
-store_raw_images2()
-store_raw_pos_images()
-create_pos_n()
+
+if args.stage == "1_1":
+    store_raw_images()
+if args.stage == "1_2":
+    store_raw_images2()
+if args.stage == "1_3":
+    store_raw_pos_images()
+    create_pos_n()
