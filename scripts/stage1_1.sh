@@ -12,4 +12,4 @@ python download-image-by-link.py --stage 1_1
 
 zstd --train neg/* -o neg
 zstd neg.zst -D neg
-cp "./neg.zst" "/root/shared/results/neg.zst" && echo "pos.zst in upload"
+cp "./neg.zst" "/root/shared/results/neg.zst" && echo "neg.zst in upload"
