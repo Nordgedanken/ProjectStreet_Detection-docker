@@ -8,3 +8,6 @@ zstd --train pos/* -o pos
 zstd pos.zst -D pos
 cp "./pos.zst" "/root/shared/results/pos.zst" && echo "pos.zst in upload"
 cp "./bg.txt" "/root/shared/results/bg.txt" && echo "bg.txt in upload"
+zstd --train neg/* -o neg
+zstd neg.zst -D neg
+cp "./neg.zst" "/root/shared/results/neg.zst" && echo "pos.zst in upload"
