@@ -10,3 +10,4 @@ echo "generate vec files"
 opencv_createsamples -info ./info/info.lst -num $NUM_FILES -w 50 -h 50 -vec positives.vec
 
 cp "./positives.vec" "/root/shared/results/positives.vec" && echo "positives.vec in upload"
+cp "./bg.txt" "/root/shared/results/bg.txt" && echo "bg.txt in upload"
